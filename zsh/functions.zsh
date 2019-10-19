@@ -11,6 +11,9 @@ prof() {
 }
 
 proj() {
+  # TODO
+  # getting MRU won't even require a script that notes my selections, it might
+  # be do just as well looking at modified dates for .git/HEAD etc
   cd "$(find-repos | selecta)"
 }
 
