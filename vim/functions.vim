@@ -203,7 +203,7 @@ function! RunFile()
 endfunction
 
 function! ShouldSendOutputToTmux()
-  return ShellOK('tmux-recipient') && $TMUX != ''
+  return $TMUX != '' && ShellOK('tmux-recipient')
 endfunction
 
 function! RailsMigrationStatus(version)
