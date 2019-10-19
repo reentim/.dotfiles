@@ -572,6 +572,8 @@ function! SetColorscheme()
     else
       set background=dark
     endif
+  elseif profile =~ 'iceberg'
+    colorscheme iceberg
   else
     colorscheme Tomorrow-Night-Bright
   endif
