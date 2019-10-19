@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-# Finds the best tmux pane to be the recipient of `tmux send-keys` i.e. running
-# things asynchronously from a terminal editor
+# Finds the best tmux pane in a given target window to be the recipient of
+# `tmux send-keys`
 
 set -o pipefail
 
+[ -z $1 ] && exit 1
 target_window="$1"
 shift
 
