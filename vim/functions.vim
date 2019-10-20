@@ -518,6 +518,7 @@ function! RenameFile()
 endfunction
 
 function! SortIndentLevel()
+  " Comments should be fixed to the line they follow
 	normal mz
 	call SelectIndent()
   execute "normal! :sort\<CR>"
