@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby # --disable-gems
 
+# TODO
+# should leave comments at start and end of file alone, might be modelines,
+# shebangs, headings, or otherwise not just a comment
+
 require 'pry'
 
 class Splitter
