@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+main() {
+  while true; do
+    # actually, just watch modified time of .git/HEAD
+    ref=$(git rev-parse HEAD)
+    sleep 0.5
+  done
+}
+
+main
