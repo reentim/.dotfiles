@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby --disable-gems
+
+require 'fileutils'
+
+# TODO
+# make this work with safety options
+# how to give a grep a list of files?
+
+abort
+
+require 'fileutils'
+
+def find_cmd
+  case ARGV[0]
+  when '-a'
+    "git grep -l"
+  when '-d'
+    :dirty
+  else
+    :staged
+  end
+end
+
+def main
+  pries = [
+    %[binding.pry],
+    %[binding.remote_pry],
+    %[require "pry"],
+    %[require 'pry'],
+    %[require "pry-remote"],
+    %[require 'pry-remote'],
+  ]
+
+  always_ignore = %w[
+    unpry
+    snippets
+    UltiSnips
+  ]
+
+  p %x[grep "#{pries.map{|p| p.gsub('"', '\\"')}.join("\\|")}" $(git diff --name-only --cached)]
+
+  raise
+
+  filenames = %x[
+    git grep -l "#{pries.map{|p| p.gsub('"', '\\"')}.join("\\|")}"
+  ] .lines(chomp: true)
+    .reject { |name| always_ignore.any? { |substring| name.include?(substring) } }
+
+  require "pry";binding.pry;
+
+  exit "No pry bindings or requires found." unless filenames.any?
+
+  filenames.map do |name|
+    file = File.read(name)
+    pries.map { |p| file.gsub!(/;?#{p}\n?;?\s?/, "") }
+    File.open(name + ".tmp", "w") { |tmp_file| tmp_file << file }
+    FileUtils.mv(name + ".tmp", name)
+    File.basename(name)
+  end
+end
+
+puts format "Pry removed from:\n  %s", main.join("\n  ")
