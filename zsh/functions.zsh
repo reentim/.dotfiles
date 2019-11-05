@@ -119,3 +119,11 @@ _path_without() {
   arg=$(echo $1 | sed -e 's/[]\/$*.^[]/\\&/g')
   echo $PATH | sed "s|${arg}||g" | sed "s/::/:/g" | sed "s/:$//" | sed "s/^://g"
 }
+
+tt() {
+  local target=$(tmux-recipient)
+  if [ $target ]; then
+    tmux send-keys -t $target C-c "clear; time $*; jobs | tail -1" C-m
+    export LAST_TMUX_RECIPIENT="$target"
+  fi
+}
