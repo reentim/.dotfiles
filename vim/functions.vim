@@ -613,6 +613,7 @@ function! AbbrevTabHelp()
 endfunction
 
 function! AbbrevRemapRun()
+  " TODO: try inputdialog() and then interpolate in, to get CR on RHS
   return getcmdtype() == ":" && getcmdline() == "rr"
   \ ? "nnoremap <leader>r :w\\|:!clear;<CR>"
   \ : "rr"
