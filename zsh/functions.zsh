@@ -9,6 +9,7 @@ prof() {
     | selecta \
     | xargs -L 1 iterm change_profile $1
 
+  # TODO: some socket pubsub thing to notify vims
   [ $TMUX ] && tmux source-file ~/.tmux.conf
 }
 
