@@ -35,3 +35,6 @@ function! Colorscheme_set_after(...)
   call Lightline_update()
   call IndentGuideColors_set()
 endfunction
+
+function! Colorscheme_fuzzy_find()
+endfunction
