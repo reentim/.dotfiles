@@ -2,15 +2,15 @@ source ~/.vim/functions.vim
 
 let g:autosave = 1
 
-set nocompatible
+colorscheme solarized
 
 set autoindent
 set autoread
 set backspace=indent,eol,start
 set backup
-set backupdir=~/.tmp/vimtemp//
+set backupdir=/tmp//
 set colorcolumn=80
-set dir=~/.tmp/vimswap//
+set dir=/tmp//
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
@@ -29,11 +29,11 @@ set listchars=tab:▸\ ,eol:↵,extends:>,precedes:<,trail:.,space:.
 set modeline
 set modelines=5
 set mouse=a
+set nocompatible
 set nocursorline
 set noequalalways
 set nofoldenable
 set nojoinspaces
-set noshowmode
 set nowrap
 set nu
 set re=1 " Use the old vim regex engine for faster syntax highlighting
@@ -42,6 +42,7 @@ set shell=bash
 set shiftwidth=2
 set showcmd
 set showmatch
+set showmode
 set showtabline=2
 set smartcase
 set smartindent
@@ -55,7 +56,7 @@ set ttimeout
 set ttimeoutlen=10
 set ttyfast
 set ttymouse=sgr " 'The mouse works even in columns beyond 223'
-set undodir=~/.tmp/vimundo//
+set undodir=/tmp//
 set undofile
 set wildmenu
 set winheight=16
@@ -75,7 +76,6 @@ augroup vimrc
   autocmd BufNewFile,BufRead * call CdToProjectRoot()
   autocmd BufWritePost functions.vim source ~/.vim/functions.vim
   autocmd BufWritePre,InsertLeave jrnl* call RewrapBuffer()
-  autocmd Colorscheme * call Colorscheme_set_after()
   autocmd VimEnter * call VimEnter_after()
 
   autocmd BufReadPost * call ResumeCursorPosition()
@@ -173,14 +173,14 @@ nnoremap <leader>c :call Profile_fuzzy_set()<CR>
 nnoremap <leader>d :call AsyncShell('open ' . expand('%:p:h'))<CR>
 nnoremap <silent><leader>dd :execute 'read !date "+\%F \%R"'<CR>
 nnoremap <leader>ed :lcd ~/deps\|:e common.rb<CR>
-nnoremap <leader>ef :e ~/.dotfiles/vim/functions.vim<CR>
-nnoremap <leader>ep :e ~/.dotfiles/profile<CR>
+nnoremap <leader>ef :e ~/dotfiles/vim/functions.vim<CR>
+nnoremap <leader>ep :e ~/dotfiles/profile<CR>
 nnoremap <leader>er :source $MYVIMRC\|:call VimEnter_after()<CR>
 nnoremap <leader>es :UltiSnipsEdit!<CR>
-nnoremap <leader>et :e ~/.dotfiles/tmux.conf<CR>
-nnoremap <leader>ev :e ~/.dotfiles/vimrc<CR>
-nnoremap <leader>ez :e ~/.dotfiles/zshrc<CR>
-nnoremap <leader>ezf :e ~/.dotfiles/zsh/functions.zsh<CR>
+nnoremap <leader>et :e ~/dotfiles/tmux.conf<CR>
+nnoremap <leader>ev :e ~/dotfiles/vimrc<CR>
+nnoremap <leader>ez :e ~/dotfiles/zshrc<CR>
+nnoremap <leader>ezf :e ~/dotfiles/zsh/functions.zsh<CR>
 nnoremap <leader>f :call RunFile()<CR>
 nnoremap <leader>gb :call SelectaGitCurrentBranchFile()<CR>
 nnoremap <leader>gc :call SelectaGitCommitFile("HEAD")<CR>

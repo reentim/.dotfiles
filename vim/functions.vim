@@ -1,11 +1,3 @@
-if filereadable(expand("~/.vim/lightline.vim"))
-  source ~/.vim/lightline.vim
-endif
-
-if filereadable(expand("~/.vim/colorscheme.vim"))
-  source ~/.vim/colorscheme.vim
-endif
-
 if filereadable(expand("~/.vim/trailing_whitespace.vim"))
   source ~/.vim/trailing_whitespace.vim
 endif
@@ -685,7 +677,6 @@ endfunction
 
 function! VimEnter_after()
   call Profile_get()
-  call Colorscheme_set()
   call EnsureTempDirs()
   call FuzzyFinder_configure()
   call ItalicComments_enable()

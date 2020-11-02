@@ -1,5 +1,3 @@
-start=$($HOME/bin/monotonic-clock)
-
 source ~/.profile
 
 setopt PROMPT_SUBST
@@ -55,6 +53,4 @@ bindkey '' toggle-prompt-time
 
 export LC_ALL="en_AU.UTF-8"
 
-finish=$($HOME/bin/monotonic-clock)
-let local "dt = ($finish - $start)"
-printf "=> [zshrc: %.3f seconds]\n" $dt
+export PATH="$HOME/.rbenv/bin:$PATH"

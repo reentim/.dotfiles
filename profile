@@ -21,16 +21,14 @@ source ~/.zsh/functions.zsh
 [ -f ~/.dotfiles/lib/z/z.sh ] && Z_INSTALLED=1
 [ -d "$HOME/.asdf" ] && ASDF_INSTALLED=1
 
-[ $HOMEBREW_INSTALLED=1 ] && prepend_path "/usr/local/bin"
-
 [ -f ~/.aliases ] && source ~/.aliases
 
 # Add private keys to the ssh agent, if there are none already added
-if ! (ssh-add -l &> /dev/null); then
-  find ~/.ssh -type f \
-    -exec bash -c '[[ "$(file "$1")" == *"private key"* ]]' bash {} ';' \
-    -print | xargs ssh-add -K
-fi
+# if ! (ssh-add -l &> /dev/null); then
+#   find ~/.ssh -type f \
+#     -exec bash -c '[[ "$(file "$1")" == *"private key"* ]]' bash {} ';' \
+#     -print | xargs ssh-add -K
+# fi
 
 # Assumed branch fork point. Should be set appropriately in projects that
 # branch from e.g. development
@@ -45,15 +43,15 @@ if [ $ASDF_INSTALLED ]; then
   source "$HOME/.asdf/asdf.sh"
 fi
 
-# if [ $RBENV_INSTALLED ]; then
-#   prepend_path "$HOME/.rbenv/bin"
-#   prepend_path "$HOME/.rbenv/shims"
+if [ $RBENV_INSTALLED ]; then
+  prepend_path "$HOME/.rbenv/bin"
+  prepend_path "$HOME/.rbenv/shims"
 
-#   if ! (on_path "$HOME/.rbenv/shims"); then
-#     [ $BASH_VERSION ] && eval "$(rbenv init - bash)"
-#     [ $ZSH_VERSION ] && eval "$(rbenv init - zsh)"
-#   fi
-# fi
+  if ! (on_path "$HOME/.rbenv/shims"); then
+    [ $BASH_VERSION ] && eval "$(rbenv init - bash)"
+    [ $ZSH_VERSION ] && eval "$(rbenv init - zsh)"
+  fi
+fi
 
 if [ $CHRUBY_INSTALLED ]; then
   source /usr/local/opt/chruby/share/chruby/chruby.sh
